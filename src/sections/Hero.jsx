@@ -47,76 +47,8 @@ function Hero() {
       </div>
 
       {/* Top-heavy navy gradient overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/90 via-navy-900/55 to-navy-900/85" />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-900/60 via-transparent to-navy-900/60" />
-      {/* Cinematic vignette */}
-      <div className="absolute inset-0 [background:radial-gradient(ellipse_at_center,transparent_35%,rgba(2,6,23,0.75)_100%)]" />
-
-      {/* Ambient light reflections */}
-      <div className="absolute top-[12%] right-[18%] w-[520px] h-[520px] rounded-full bg-cyan-400/10 blur-[140px] animate-glow-pulse" />
-      <div className="absolute bottom-[18%] left-[10%] w-[420px] h-[420px] rounded-full bg-sky-500/10 blur-[120px] animate-drift-slow" />
-      <div className="absolute top-[30%] left-[40%] w-[260px] h-[260px] rounded-full bg-amber-300/[0.06] blur-[100px] animate-drift-reverse" />
-
-      {/* Soft fog overlay */}
-      <div
-        className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none animate-drift-slow"
-        style={{
-          backgroundImage: `radial-gradient(ellipse 60% 40% at 20% 80%, rgba(148,200,255,0.12), transparent 70%), radial-gradient(ellipse 50% 35% at 80% 20%, rgba(103,232,249,0.1), transparent 70%)`,
-        }}
-      />
-
-      {/* Animated particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {Array.from({ length: 14 }).map((_, i) => {
-          const left = (i * 73) % 100;
-          const size = 1 + (i % 3);
-          const duration = 18 + (i % 8) * 2;
-          const delay = (i * 1.3) % 12;
-          return (
-            <span
-              key={i}
-              className="absolute bottom-0 rounded-full bg-cyan-200/60 animate-float-particle"
-              style={{
-                left: `${left}%`,
-                width: `${size}px`,
-                height: `${size}px`,
-                animationDuration: `${duration}s`,
-                animationDelay: `${delay}s`,
-                filter: 'blur(0.5px)',
-              }}
-            />
-          );
-        })}
-      </div>
-
-      {/* Subtle grain */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* Ocean wave bottom — double layer for depth */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none">
-        <svg
-          viewBox="0 0 1440 120"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full block"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,80 C360,120 720,40 1080,80 C1260,100 1380,60 1440,70 L1440,120 L0,120 Z"
-            fill="#0f172a"
-            fillOpacity="0.35"
-          />
-          <path
-            d="M0,90 C240,110 480,60 720,90 C960,120 1200,50 1440,80 L1440,120 L0,120 Z"
-            fill="#0f172a"
-            fillOpacity="0.85"
-          />
-        </svg>
-      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-900/40 via-navy-900/55 to-navy-900/40" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-900/40 via-transparent to-navy-900/40" />
 
       {/* Content */}
       <div
@@ -125,18 +57,18 @@ function Hero() {
       >
         <div className="max-w-4xl text-center">
           {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 glass-card text-white/75 text-[11px] font-semibold uppercase tracking-[0.28em] px-5 py-2 rounded-full mb-9 animate-fade-up">
+          {/* <div className="inline-flex items-center gap-2 glass-card text-white/75 text-[11px] font-semibold uppercase tracking-[0.28em] px-5 py-2 rounded-full mb-9 animate-fade-up">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-pulse" />
             Ocean Serenity FZ-LLC
-          </div>
+          </div> */}
 
           {/* Headline — premium display serif */}
           <h1 className="font-display text-[2.75rem] sm:text-6xl lg:text-7xl xl:text-[5.25rem] text-white leading-[1.05] tracking-tight mb-7 animate-fade-up animation-delay-100">
             Integrated{' '}
-            <span className="text-gradient-ocean italic">
-              Marine &amp; Industrial {''}
+            <span className="text-gradient-ocean">
+              Marine &<br />
+              Industrial Solutions
             </span>
-            <br className="hidden sm:block" /> Solutions
           </h1>
 
           {/* Subheading — clean sans, wide letter spacing */}
@@ -187,20 +119,6 @@ function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Smooth scroll indicator */}
-      <button
-        onClick={handleExplore}
-        aria-label="Scroll to content"
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 group"
-      >
-        <span className="text-white/40 text-[10px] font-medium uppercase tracking-[0.3em] group-hover:text-white/70 transition-colors">
-          Scroll
-        </span>
-        <div className="w-6 h-10 rounded-full border border-white/25 flex items-start justify-center p-1.5 group-hover:border-cyan-300/60 transition-colors">
-          <div className="w-1 h-2.5 rounded-full bg-gradient-to-b from-white to-cyan-300 animate-bounce" />
-        </div>
-      </button>
     </section>
   );
 }

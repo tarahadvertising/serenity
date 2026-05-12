@@ -57,38 +57,27 @@ function Companies() {
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
           <div>
             <div className="inline-flex items-center gap-2 glass-card text-white/70 text-[11px] font-semibold uppercase tracking-[0.28em] px-5 py-2 rounded-full mb-6">
-              <Anchor className="w-3 h-3 text-cyan-300" />
               Our Portfolio
             </div>
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight max-w-2xl">
               Four specialized companies.{' '}
-              <span className="italic text-gradient-ocean">One integrated group.</span>
+              <span className="text-gradient-ocean">One integrated group.</span>
             </h2>
           </div>
-          <p className="text-white/50 text-sm sm:text-base leading-relaxed max-w-sm">
-            A coordinated portfolio of subsidiaries built to deliver end-to-end
-            maritime and industrial capability under a single, accountable
-            group.
-          </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {companies.map((c) => (
             <div
               key={c.name}
-              className="group relative glass-card rounded-2xl p-6 flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:bg-white/[0.07] shimmer-border"
+              className="group relative glass-card rounded-2xl p-6 flex flex-col overflow-hidden transition-all duration-500   shimmer-border"
             >
-              {/* Accent glow */}
-              <div
-                className={`absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gradient-to-br ${c.accent} blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-              />
-
               {/* Logo */}
-              <div className="relative w-14 h-14 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center mb-6 group-hover:border-cyan-300/30 transition-colors">
+              <div className="relative w-14 h-14 rounded-xl bg-white/[0.8] border border-white/[25] flex items-center justify-center mb-6 transition-colors">
                 <img
                   src={c.logo}
                   alt={c.name}
-                  className="w-9 h-9 object-contain"
+                  className="w-15 h-15 object-contain"
                 />
               </div>
 

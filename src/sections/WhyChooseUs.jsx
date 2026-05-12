@@ -38,10 +38,7 @@ const reasons = [
 
 function WhyChooseUs() {
   return (
-    <section
-      id="why-us"
-      className="relative py-28 bg-navy-900 overflow-hidden"
-    >
+    <section id="why-us" className="relative py-28 bg-navy-900 overflow-hidden">
       {/* Multi-layer background */}
       <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-[#0a1424] to-navy-900" />
       <div className="absolute top-0 left-1/3 w-[600px] h-[600px] rounded-full bg-cyan-500/[0.07] blur-[140px] animate-glow-pulse" />
@@ -64,7 +61,9 @@ function WhyChooseUs() {
           </div>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight mb-5">
             Built on trust.{' '}
-            <span className="italic text-gradient-ocean">Engineered for excellence.</span>
+            <span className="italic text-gradient-ocean">
+              Engineered for excellence.
+            </span>
           </h2>
           <p className="text-white/50 text-base max-w-2xl mx-auto leading-relaxed">
             Four principles define how we work and why leading operators choose

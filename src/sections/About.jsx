@@ -31,38 +31,34 @@ const highlights = [
     description: 'Serving governments, operators and enterprises worldwide.',
   },
 ];
-
 function About() {
   return (
     <section id="about" className="relative py-28 bg-white overflow-hidden">
       {/* Background accents */}
-      <div className="absolute top-0 left-0 w-[520px] h-[520px] rounded-full bg-sky-500/[0.05] blur-[120px] -translate-x-1/2 -translate-y-1/3" />
-      <div className="absolute bottom-0 right-0 w-[420px] h-[420px] rounded-full bg-cyan-400/[0.05] blur-[100px] translate-x-1/4 translate-y-1/4" />
+      <div className="absolute top-0 left-0 w-[520px] h-[520px] rounded-full  blur-[120px] -translate-x-1/2 -translate-y-1/3" />
+      <div className="absolute bottom-0 right-0 w-[420px] h-[420px] rounded-full  blur-[100px] translate-x-1/4 translate-y-1/4" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           {/* Left – Text */}
           <div className="lg:col-span-6">
             <div className="inline-flex items-center gap-2 bg-navy-900/[0.05] border border-navy-900/[0.08] text-navy-800 text-[11px] font-semibold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-7">
-              <Anchor className="w-3 h-3 text-cyan-600" />
               About the Group
             </div>
 
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-navy-900 leading-[1.05] tracking-tight mb-8">
               A diversified maritime &amp;{' '}
-              <span className="italic bg-gradient-to-r from-sky-700 to-cyan-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-sky-700 to-cyan-500 bg-clip-text text-transparent">
                 industrial
               </span>{' '}
               conglomerate.
             </h2>
-
             <p className="text-gray-500 leading-relaxed text-[15px] mb-10 max-w-lg">
               Ocean Serenity FZ-LLC unites specialized subsidiaries under one
               disciplined, internationally-minded group — delivering integrated
               solutions across marine operations, industrial engineering, and
               intelligent automation.
             </p>
-
             <Link
               to="/contact"
               className="group inline-flex items-center gap-2 text-navy-900 font-semibold text-sm border-b-2 border-navy-900/20 hover:border-cyan-500 pb-1 transition-colors"
@@ -71,22 +67,19 @@ function About() {
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
-
           {/* Right – Abstract visual + 2x2 icon grid */}
           <div className="lg:col-span-6">
             {/* Gradient visual card */}
-            <div className="relative rounded-3xl overflow-hidden mb-6 aspect-[16/8] bg-gradient-to-br from-navy-900 via-sky-900 to-cyan-700 shimmer-border">
-              {/* Grid pattern */}
+            <div className="relative rounded-3xl overflow-hidden mb-6 aspect-[16/8] shimmer-border">
+              {/* Background image */}
               <div
-                className="absolute inset-0 opacity-30"
+                className="absolute inset-0 "
                 style={{
-                  backgroundImage: `linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)`,
-                  backgroundSize: '40px 40px',
+                  backgroundImage: `url('/about.webp')`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
                 }}
               />
-              {/* Glows */}
-              <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-64 h-64 rounded-full bg-cyan-400/40 blur-[90px]" />
-              <div className="absolute bottom-0 right-0 w-52 h-52 rounded-full bg-amber-300/20 blur-[70px]" />
               {/* Radial rings */}
               <svg
                 className="absolute inset-0 w-full h-full opacity-40"
@@ -127,16 +120,15 @@ function About() {
                 />
               </svg>
               {/* Label */}
-              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-white">
+              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-black">
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.3em] text-white/50">
+                  <div className="text-[10px] uppercase tracking-[0.3em] text-black/50">
                     Est. UAE
                   </div>
                   <div className="font-display text-2xl mt-1">
                     Ocean Serenity Group
                   </div>
                 </div>
-                <Anchor className="w-8 h-8 text-cyan-300/70" />
               </div>
             </div>
 

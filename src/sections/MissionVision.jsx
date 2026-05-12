@@ -50,7 +50,9 @@ function MissionVision() {
                   <div className="text-white/40 text-[10px] uppercase tracking-[0.3em] mb-1">
                     01 — Our Mission
                   </div>
-                  <h3 className="font-display text-3xl text-white">What drives us</h3>
+                  <h3 className="font-display text-3xl text-white">
+                    What drives us
+                  </h3>
                 </div>
               </div>
 
@@ -80,15 +82,17 @@ function MissionVision() {
                   <div className="text-gray-400 text-[10px] uppercase tracking-[0.3em] mb-1">
                     02 — Our Vision
                   </div>
-                  <h3 className="font-display text-3xl text-navy-900">Where we&apos;re headed</h3>
+                  <h3 className="font-display text-3xl text-navy-900">
+                    Where we&apos;re headed
+                  </h3>
                 </div>
               </div>
 
               <p className="text-gray-600 text-[15px] leading-relaxed">
                 To become the leading integrated marine and industrial group in
                 the MENA region — recognized globally for innovation, integrity,
-                and a commitment to creating lasting value for every
-                stakeholder we serve.
+                and a commitment to creating lasting value for every stakeholder
+                we serve.
               </p>
 
               <div className="mt-10 h-px bg-gradient-to-r from-cyan-400/60 via-gray-200 to-transparent" />

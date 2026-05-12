@@ -1,6 +1,5 @@
 import React from 'react';
 import Hero from '../sections/Hero';
-import TrustBar from '../sections/TrustBar';
 import About from '../sections/About';
 import Companies from '../sections/Companies';
 import Services from '../sections/Services';
@@ -14,7 +13,6 @@ function Home() {
   return (
     <>
       <Hero />
-      <TrustBar />
       <div className="reveal">
         <About />
       </div>
