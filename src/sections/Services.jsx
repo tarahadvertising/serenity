@@ -1,97 +1,94 @@
-import React from 'react';
-import { Anchor, Wrench, Cpu, ShieldCheck, Gauge, Truck } from 'lucide-react';
+import RevealOnScroll from '../components/RevealOnScroll';
 
 const services = [
-  {
-    Icon: Anchor,
-    title: 'Marine Solutions',
-    description:
-      'Port agency, vessel management, crew logistics and maritime consultancy.',
-  },
-  {
-    Icon: Wrench,
-    title: 'Industrial Solutions',
-    description:
-      'Turnkey engineering, insulation, heat tracing and mechanical maintenance.',
-  },
-  {
-    Icon: Cpu,
-    title: 'Automation',
-    description:
-      'Smart automation, instrumentation and predictive maintenance for complex assets.',
-  },
-  {
-    Icon: ShieldCheck,
-    title: 'Safety & Compliance',
-    description:
-      'QHSE systems, audits and ISM/ISPS-aligned regulatory consulting.',
-  },
-  {
-    Icon: Gauge,
-    title: 'Survey & Inspection',
-    description: 'AUV / ROV subsea surveys and asset integrity assessments.',
-  },
-  {
-    Icon: Truck,
-    title: 'Logistics & Supply',
-    description:
-      'End-to-end marine logistics, ship chandling and offshore supply.',
-  },
+  'Port Agency & Husbandry',
+  'Crew Management & Logistics',
+  'Ship Chandling & Provisions',
+  'Yacht Charter & Management',
+  'AUV / ROV Subsea Survey',
+  'Remote Inspection & Monitoring',
+  'Thermal Insulation Systems',
+  'Heat Tracing Engineering',
+  'Turnkey Industrial Projects',
+  'Safety & QHSE Compliance',
+  'Marine Consultancy',
+  'Offshore Supply & Logistics',
+];
+
+const companyNames = ['ASP', 'K&S', 'OI', 'Warmsol'];
+
+const matrix = [
+  [true, false, false, false],
+  [true, false, false, false],
+  [true, false, false, false],
+  [false, true, false, false],
+  [false, false, true, false],
+  [false, false, true, false],
+  [false, false, false, true],
+  [false, false, false, true],
+  [false, false, false, true],
+  [true, false, true, true],
+  [true, true, false, false],
+  [true, false, false, true],
 ];
 
 function Services() {
   return (
-    <section id="services" className="relative py-28 bg-white overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-cyan-400/[0.05] blur-[120px] translate-x-1/3 -translate-y-1/3" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-sky-600/[0.05] blur-[100px] -translate-x-1/3 translate-y-1/4" />
+    <section className="relative bg-deep-sea py-section overflow-hidden">
+      <div className="max-w-site mx-auto section-padding">
+        <RevealOnScroll>
+          <span className="font-mono text-eyebrow uppercase text-mist block mb-10">
+            05 — Capabilities
+          </span>
+        </RevealOnScroll>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-navy-900/[0.05] border border-navy-900/[0.08] text-navy-800 text-[11px] font-semibold uppercase tracking-[0.25em] px-4 py-1.5 rounded-full mb-6">
-            Core Capabilities
-          </div>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl text-navy-900 leading-[1.05] tracking-tight mb-5">
-            Six disciplines.{' '}
-            <span className="bg-gradient-to-r from-sky-700 to-cyan-500 bg-clip-text text-transparent">
-              One integrated delivery.
-            </span>
+        <RevealOnScroll delay={0.1}>
+          <h2 className="font-display text-h1 text-pearl max-w-[640px] mb-20">
+            What we deliver, and who delivers it.
           </h2>
-          <p className="text-gray-500 text-base max-w-2xl mx-auto leading-relaxed">
-            A connected suite of services across the marine and industrial value
-            chain, backed by world-class expertise.
-          </p>
-        </div>
+        </RevealOnScroll>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map(({ Icon, title, description }, index) => (
-            <div
-              key={title}
-              className="group relative bg-white rounded-2xl border border-black/15  p-8 transition-all duration-500 "
-            >
-              {/* Gradient wash on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-sky-50/0 via-cyan-50/0 to-transparent  transition-all duration-500" />
-
-              <div className="relative">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-navy-900 to-sky-800 text-white flex items-center justify-center mb-6 shadow-lg shadow-sky-900/20 group-hover:shadow-cyan-500/30 transition-shadow duration-500">
-                  <Icon className="w-6 h-6" />
-                </div>
-
-                <span className="text-[10px] font-semibold text-cyan-700/60 uppercase tracking-[0.25em] mb-2 block">
-                  0{index + 1}
-                </span>
-                <h3 className="text-navy-900 font-semibold text-lg leading-snug mb-3">
-                  {title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {description}
-                </p>
-
-                <div className="mt-6 h-px bg-gradient-to-r from-gray-100 via-cyan-300/40 to-transparent group-hover:via-cyan-400 transition-all duration-500" />
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Matrix Table */}
+        <RevealOnScroll delay={0.2}>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="hairline-b">
+                  <th className="text-left pb-4 pr-8">
+                    <span className="font-mono text-eyebrow uppercase text-mist">
+                      Service
+                    </span>
+                  </th>
+                  {companyNames.map((name) => (
+                    <th key={name} className="pb-4 px-6 text-center">
+                      <span className="font-mono text-eyebrow uppercase text-mist">
+                        {name}
+                      </span>
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {services.map((service, i) => (
+                  <tr key={service} className="hairline-b group">
+                    <td className="py-4 pr-8">
+                      <span className="text-body text-pearl/70 group-hover:text-pearl transition-colors duration-200">
+                        {service}
+                      </span>
+                    </td>
+                    {matrix[i].map((active, j) => (
+                      <td key={j} className="py-4 px-6 text-center">
+                        {active && (
+                          <span className="inline-block w-2 h-2 rounded-full bg-brass" />
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

@@ -1,189 +1,222 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
-  { label: 'Home', to: '/', hash: '' },
-  { label: 'About', to: '/', hash: '#about' },
-  { label: 'Companies', to: '/', hash: '#companies' },
-  { label: 'Services', to: '/', hash: '#services' },
-  { label: 'Contact', to: '/contact', hash: '' },
+  { label: 'Group', to: '/group' },
+  { label: 'Companies', to: '/companies', hasMega: true },
+  { label: 'Operations', to: '/operations' },
+  { label: 'Insights', to: '/insights' },
+  { label: 'Contact', to: '/contact' },
+];
+
+const companies = [
+  {
+    slug: 'asp-global-marine',
+    name: 'ASP Global Marine',
+    tag: 'Port Agency & Logistics',
+    logo: '/asp.svg',
+  },
+  {
+    slug: 'knot-and-sail',
+    name: 'Knot & Sail',
+    tag: 'Yacht Management',
+    logo: '/knot.webp',
+  },
+  {
+    slug: 'ocean-infinity',
+    name: 'Ocean Infinity',
+    tag: 'Autonomous Marine Tech',
+    logo: '/infinity.webp',
+  },
+  {
+    slug: 'warmsol',
+    name: 'Warmsol Marine & Industrial',
+    tag: 'Industrial Engineering',
+    logo: '/warmsol.svg',
+  },
 ];
 
 function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleNavClick = (hash) => {
-    setMenuOpen(false);
-    if (hash) {
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }
-  };
-
-  const linkBase =
-    'relative px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200 rounded-lg group';
-  const linkTransparent = 'text-white/75 hover:text-white hover:bg-white/10';
-  const linkScrolled = 'text-gray-600 hover:text-navy-900 hover:bg-gray-50';
-  const activeTransparent = 'text-white';
-  const activeScrolled = 'text-navy-900 font-semibold';
-
-  const getLinkClass = (link) => {
-    const isActive =
-      link.to === '/contact'
-        ? location.pathname === '/contact'
-        : location.pathname === '/' && link.label === 'Home';
-    return `${linkBase} ${
-      scrolled
-        ? `${linkScrolled} ${isActive ? activeScrolled : ''}`
-        : `${linkTransparent} ${isActive ? activeTransparent : ''}`
-    }`;
-  };
+  useEffect(() => {
+    setMobileOpen(false);
+    setMegaOpen(false);
+  }, [location.pathname]);
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-xl shadow-[0_1px_30px_-10px_rgba(8,47,73,0.18)] py-2 border-b border-gray-100/80'
-          : 'bg-transparent py-3'
+        scrolled ? 'bg-ink/95 backdrop-blur-xl' : 'bg-transparent'
       }`}
     >
-      {/* Subtle top accent line when transparent */}
-      {!scrolled && (
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+      {scrolled && (
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-pearl/[0.08]" />
       )}
 
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <nav className="max-w-site mx-auto section-padding flex items-center justify-between h-20">
         {/* Logo */}
-        <Link
-          to="/"
-          className="flex items-center gap-2 group flex-shrink-0"
-          onClick={() => setMenuOpen(false)}
-        >
+        <Link to="/" className="flex items-center">
           <img
             src="/SerenityLogo.svg"
-            alt="Ocean Serenity FZ-LLC"
-            className="h-14 w-auto object-contain transition-opacity duration-300 group-hover:opacity-85"
+            alt="Ocean Serenity"
+            className="h-14 w-auto"
           />
         </Link>
-
-        {/* Desktop Links */}
-        <ul className="hidden md:flex items-center gap-0.5">
+        {/* Desktop Nav */}
+        <ul className="hidden lg:flex items-center gap-10">
           {navLinks.map((link) => (
-            <li key={link.label}>
-              {link.hash ? (
-                <Link
-                  to={link.to}
-                  onClick={() => handleNavClick(link.hash)}
-                  className={getLinkClass(link)}
-                >
-                  {link.label}
-                  <span className="absolute bottom-1 left-4 right-4 h-px bg-gradient-to-r from-cyan-400 to-sky-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                </Link>
-              ) : (
-                <Link
-                  to={link.to}
-                  onClick={() => setMenuOpen(false)}
-                  className={getLinkClass(link)}
-                >
-                  {link.label}
-                  <span className="absolute bottom-1 left-4 right-4 h-px bg-gradient-to-r from-cyan-400 to-sky-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                </Link>
-              )}
+            <li
+              key={link.label}
+              className="relative"
+              onMouseEnter={() => link.hasMega && setMegaOpen(true)}
+              onMouseLeave={() => link.hasMega && setMegaOpen(false)}
+            >
+              <Link
+                to={link.to}
+                className={`text-sm font-sans tracking-wide transition-colors duration-hover ${
+                  location.pathname.startsWith(link.to)
+                    ? 'text-brass'
+                    : 'text-mist hover:text-pearl'
+                }`}
+              >
+                {link.label}
+              </Link>
             </li>
           ))}
-
-          {/* CTA */}
-          <li className="ml-3">
-            <Link
-              to="/contact"
-              className={`group relative inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 overflow-hidden ${
-                scrolled ? 'btn-ocean text-white' : 'btn-glass text-white'
-              }`}
-            >
-              <span className="relative z-10">Get in Touch</span>
-              <ArrowRight className="relative z-10 w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
-              <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-            </Link>
-          </li>
         </ul>
+
+        {/* Language Switcher */}
+        <div className="hidden lg:flex items-center gap-3 font-mono text-eyebrow uppercase">
+          <span className="text-pearl">EN</span>
+          <span className="text-pearl/20">|</span>
+          <span className="text-mist hover:text-pearl transition-colors duration-hover cursor-pointer">
+            AR
+          </span>
+        </div>
 
         {/* Mobile Toggle */}
         <button
-          className={`md:hidden p-2 rounded-xl transition-colors ${
-            scrolled
-              ? 'text-navy-800 hover:bg-gray-100'
-              : 'text-white hover:bg-white/15'
-          }`}
-          onClick={() => setMenuOpen(!menuOpen)}
+          className="lg:hidden flex flex-col gap-1.5 p-2"
+          onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <motion.span
+            className="block w-6 h-px bg-pearl origin-center"
+            animate={mobileOpen ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+          <motion.span
+            className="block w-6 h-px bg-pearl origin-center"
+            animate={mobileOpen ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.3 }}
+          />
         </button>
       </nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={`md:hidden transition-all duration-400 overflow-hidden ${
-          menuOpen ? 'max-h-[28rem] opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="relative bg-navy-900/97 backdrop-blur-2xl border-t border-white/[0.08] px-4 py-4 space-y-1">
-          {/* Ambient glow */}
-          <div className="absolute top-0 right-1/4 w-56 h-56 rounded-full bg-cyan-400/[0.07] blur-[80px] pointer-events-none" />
-
-          {navLinks.map((link) => (
-            <div key={link.label} className="relative z-10">
-              {link.hash ? (
-                <Link
-                  to={link.to}
-                  onClick={() => handleNavClick(link.hash)}
-                  className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-medium text-white/70 hover:text-white hover:bg-white/[0.07] transition-all duration-200"
-                >
-                  <span className="w-1 h-1 rounded-full bg-cyan-400/60" />
-                  {link.label}
-                </Link>
-              ) : (
-                <Link
-                  to={link.to}
-                  onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    location.pathname === link.to
-                      ? 'text-white bg-white/[0.08]'
-                      : 'text-white/70 hover:text-white hover:bg-white/[0.07]'
-                  }`}
-                >
-                  <span className="w-1 h-1 rounded-full bg-cyan-400/60" />
-                  {link.label}
-                </Link>
-              )}
+      {/* Mega Panel — Companies */}
+      <AnimatePresence>
+        {megaOpen && (
+          <motion.div
+            className="hidden lg:block absolute top-full left-0 right-0 bg-deep-sea/98 backdrop-blur-xl"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            onMouseEnter={() => setMegaOpen(true)}
+            onMouseLeave={() => setMegaOpen(false)}
+          >
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-pearl/[0.06]" />
+            <div className="max-w-site mx-auto section-padding py-12">
+              <div className="grid grid-cols-4 gap-8">
+                {companies.map((c, i) => (
+                  <motion.div
+                    key={c.slug}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      delay: i * 0.06,
+                      duration: 0.4,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    <Link to={`/companies/${c.slug}`} className="group block">
+                      <div className="w-12 h-12 rounded-lg bg-midnight flex items-center justify-center mb-4 overflow-hidden">
+                        <img
+                          src={c.logo}
+                          alt={c.name}
+                          className="w-8 h-8 object-contain"
+                        />
+                      </div>
+                      <h4 className="font-display text-pearl text-lg mb-1 group-hover:text-brass transition-colors duration-hover">
+                        {c.name}
+                      </h4>
+                      <p className="font-mono text-eyebrow uppercase text-mist">
+                        {c.tag}
+                      </p>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-          <div className="pt-3 pb-1 relative z-10">
-            <Link
-              to="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="group relative flex items-center justify-center gap-2 w-full px-5 py-3.5 btn-ocean text-white text-sm font-semibold rounded-full transition-all duration-300 overflow-hidden"
-            >
-              <span className="relative z-10">Get in Touch</span>
-              <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-            </Link>
-          </div>
-        </div>
-      </div>
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            className="lg:hidden fixed inset-0 top-20 bg-ink/98 backdrop-blur-xl z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="flex flex-col px-6 py-12 gap-8">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.label}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{
+                    delay: i * 0.06,
+                    duration: 0.4,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  <Link
+                    to={link.to}
+                    className="font-display text-h2 text-pearl hover:text-brass transition-colors duration-hover"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+
+              <div className="mt-auto pt-8 hairline-t">
+                <div className="font-mono text-eyebrow uppercase text-mist flex gap-4">
+                  <span className="text-pearl">EN</span>
+                  <span className="text-pearl/20">|</span>
+                  <span>AR</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
+
 export default Navbar;

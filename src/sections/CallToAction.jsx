@@ -1,76 +1,95 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CalendarClock, Anchor } from 'lucide-react';
+import RevealOnScroll from '../components/RevealOnScroll';
+
+const articles = [
+  {
+    date: '14 Apr 2026',
+    category: 'Group News',
+    headline:
+      'Ocean Serenity acquires majority stake in Warmsol Marine & Industrial',
+    slug: '#',
+  },
+  {
+    date: '28 Mar 2026',
+    category: 'Technology',
+    headline:
+      'Ocean Infinity completes first autonomous deep-water survey in the Arabian Gulf',
+    slug: '#',
+  },
+  {
+    date: '12 Feb 2026',
+    category: 'Operations',
+    headline: 'ASP Global Marine opens new port agency office in Fujairah',
+    slug: '#',
+  },
+  {
+    date: '30 Jan 2026',
+    category: 'Sustainability',
+    headline:
+      'Group-wide decarbonization roadmap published ahead of IMO review',
+    slug: '#',
+  },
+  {
+    date: '08 Dec 2025',
+    category: 'Yachting',
+    headline:
+      'Knot & Sail launches bespoke superyacht charter programme for the Indian Ocean',
+    slug: '#',
+  },
+];
 
 function CallToAction() {
   return (
-    <section className="relative py-24 bg-navy-900 overflow-hidden">
-      {/* Cinematic background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#050b18] via-navy-900 to-[#061224]" />
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-cyan-500/10 blur-[140px] animate-glow-pulse" />
-      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full bg-sky-800/25 blur-[120px]" />
-      <div className="absolute top-1/3 right-0 w-[400px] h-[400px] rounded-full bg-amber-300/[0.06] blur-[100px]" />
-
-      {/* Grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.25) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.25) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-          maskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, black 40%, transparent 80%)',
-        }}
-      />
-
-      {/* Grain */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="inline-flex items-center gap-2 glass-card text-white/70 text-[11px] font-semibold uppercase tracking-[0.28em] px-5 py-2 rounded-full mb-8">
-          <Anchor className="w-3 h-3 text-cyan-300" />
-          Let&apos;s Work Together
-        </div>
-
-        <h2 className="font-display text-4xl sm:text-5xl lg:text-[4.5rem] text-white leading-[1.05] tracking-tight mb-6">
-          Ready to elevate your{' '}
-          <span className="italic text-gradient-ocean">operations?</span>
-        </h2>
-
-        <p className="text-white/55 text-base sm:text-lg max-w-xl mx-auto mb-12 leading-relaxed">
-          Partner with Ocean Serenity to deliver precision, reliability, and
-          innovation across your next project.
-        </p>
-
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link
-            to="/contact"
-            className="group relative inline-flex items-center gap-2 btn-ocean px-8 py-4 text-white font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 text-sm overflow-hidden"
-          >
-            <span className="relative z-10">Contact Us</span>
-            <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            <span className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12" />
-          </Link>
-          <Link
-            to="/contact"
-            className="btn-glass inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 text-sm"
-          >
-            <CalendarClock className="w-4 h-4" />
-            Schedule Consultation
-          </Link>
-        </div>
-
-        {/* Subtle footer note */}
-        <div className="mt-14 flex items-center justify-center gap-3">
-          <div className="h-px w-16 bg-gradient-to-r from-transparent to-white/20" />
-          <span className="text-white/30 text-[11px] uppercase tracking-[0.3em]">
-            Dubai · UAE · Global Operations
+    <section className="relative bg-midnight py-section overflow-hidden">
+      <div className="max-w-site mx-auto section-padding">
+        <RevealOnScroll>
+          <span className="font-mono text-eyebrow uppercase text-mist block mb-10">
+            09 — Press & Insights
           </span>
-          <div className="h-px w-16 bg-gradient-to-l from-transparent to-white/20" />
+        </RevealOnScroll>
+
+        <RevealOnScroll delay={0.1}>
+          <h2 className="font-display text-h1 text-pearl max-w-[500px] mb-20">
+            Recent developments.
+          </h2>
+        </RevealOnScroll>
+
+        <div>
+          {articles.map((article, i) => (
+            <RevealOnScroll key={article.headline} delay={0.05 + i * 0.06}>
+              <Link to={article.slug} className="group block py-8 hairline-b">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-baseline">
+                  {/* Date */}
+                  <div className="lg:col-span-2">
+                    <span className="font-mono text-eyebrow uppercase text-mist">
+                      {article.date}
+                    </span>
+                  </div>
+
+                  {/* Category */}
+                  <div className="lg:col-span-2">
+                    <span className="font-mono text-eyebrow uppercase text-brass">
+                      {article.category}
+                    </span>
+                  </div>
+
+                  {/* Headline */}
+                  <div className="lg:col-span-7">
+                    <h3 className="font-display text-h3 text-pearl group-hover:text-brass-light transition-colors duration-entrance group-hover:translate-x-2 transform transition-transform duration-entrance">
+                      {article.headline}
+                    </h3>
+                  </div>
+
+                  {/* Arrow */}
+                  <div className="lg:col-span-1 hidden lg:flex justify-end">
+                    <span className="text-mist group-hover:text-brass transition-colors duration-hover">
+                      →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </RevealOnScroll>
+          ))}
         </div>
       </div>
     </section>
