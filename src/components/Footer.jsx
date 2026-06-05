@@ -6,7 +6,6 @@ function Footer() {
   return (
     <footer className="relative bg-ink overflow-hidden">
       <div className="hairline-t" />
-
       <div className="max-w-site mx-auto section-padding py-20">
         {/* Main Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
@@ -30,9 +29,9 @@ function Footer() {
               Operations
             </span>
             <p className="text-body text-pearl/70 leading-relaxed">
-              Abu Dhabi · Fujairah
+              United Arab Emirates · Kingdom of Saudi Arabia
               <br />
-              Ras Al Khaimah
+              Qatar · opening soon -&gt; (india, maldives)
             </p>
           </div>
 
@@ -43,10 +42,10 @@ function Footer() {
             </span>
             <div className="space-y-2">
               <a
-                href="mailto:info@oceanserenity.ae"
+                href="mailto:info@oceanserenity.com"
                 className="text-brass-hover text-body text-pearl hover:text-brass transition-colors duration-hover block"
               >
-                info@oceanserenity.ae
+                info@oceanserenity.com
               </a>
               <a
                 href="tel:+971527756765"

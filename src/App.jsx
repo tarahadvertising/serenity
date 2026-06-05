@@ -6,6 +6,7 @@ import SmoothScroll from './components/SmoothScroll';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
+import Blogs from './pages/Blogs';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/companies/:slug" element={<Home />} />
             <Route path="/operations" element={<Home />} />
             <Route path="/insights" element={<Home />} />
+            <Route path="/blogs" element={<Blogs />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

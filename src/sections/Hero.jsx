@@ -2,12 +2,11 @@ import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const counters = [
-  { value: 120, suffix: '+', label: 'Vessels Managed' },
+  { value: 120, suffix: '+', label: 'Vessels Attended' },
   { value: 34, suffix: '', label: 'Ports Served' },
   { value: 18, suffix: '', label: 'Countries' },
 ];
-
-const headlineWords = ['A', 'quiet', 'force', 'across', 'four', 'oceans.'];
+const headlineWords = ['Fathoming', 'oceans', 'beyond', 'technology'];
 
 function AnimatedCounter({ target, suffix }) {
   const [count, setCount] = useState(0);
@@ -44,7 +43,6 @@ function AnimatedCounter({ target, suffix }) {
     </span>
   );
 }
-
 function Hero() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -54,11 +52,10 @@ function Hero() {
   const videoScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.2]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.45, 0.75]);
   const contentY = useTransform(scrollYProgress, [0, 1], [0, 120]);
-
   return (
     <section
       ref={containerRef}
-      className="relative h-screen flex flex-col justify-end overflow-hidden bg-ink"
+      className="relative h-screen flex items-center justify-center overflow-hidden bg-ink"
       aria-label="Hero"
     >
       {/* Video Background */}
@@ -82,72 +79,95 @@ function Hero() {
       />
       {/* Top-left Eyebrow */}
       <motion.div
-        className="absolute top-16 left-6 md:left-12 lg:left-24 z-10"
+        className="absolute top-16 left-6 md:left-12 lg:left-gutter z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8 }}
       ></motion.div>
-
       {/* Main Content */}
       <motion.div
-        className="pt-20 relative z-10 section-padding pb-16 md:pb-20"
+        className="relative z-10 w-full max-w-7xl mx-auto section-padding"
         style={{ y: contentY }}
       >
-        <div className="max-w-site mx-auto">
-          {/* Headline */}
-          <h1 className="font-display text-display-l text-pearl mb-8 max-w-[900px]">
-            {headlineWords.map((word, i) => (
-              <span key={i} className="inline-block word-mask mr-[0.25em]">
-                <motion.span
-                  className="inline-block"
-                  initial={{ y: '110%' }}
-                  animate={{ y: 0 }}
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column - Text Content */}
+          <div className="space-y-8">
+            {/* Headline */}
+            <h1 className="font-display text-display-l text-pearl mb-8">
+              {headlineWords.map((word, i) => (
+                <span key={i} className="inline-block word-mask mr-[0.25em]">
+                  <motion.span
+                    className="inline-block"
+                    initial={{ y: '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{
+                      delay: 0.3 + i * 0.08,
+                      duration: 0.7,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                </span>
+              ))}
+            </h1>
+
+            {/* Supporting Text */}
+            <motion.p
+              className="text-body-l text-mist max-w-[500px]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 1.0,
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              Ocean Serenity is a maritime and industrial group operating four
+              specialist companies in Ship Repairs, Ship Chandling Services,
+              International Port Service Assistants, and Industrial Services.
+            </motion.p>
+          </div>
+
+          {/* Right Column - Counters */}
+          <div className="flex justify-center lg:justify-end">
+            <motion.div
+              className="flex flex-col space-y-8 lg:space-y-12"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{
+                delay: 1.1,
+                duration: 0.7,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
+              {counters.map((c, i) => (
+                <motion.div
+                  key={c.label}
+                  className="flex flex-col items-center lg:items-end text-center lg:text-right"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    delay: 0.3 + i * 0.08,
+                    delay: 1.2 + i * 0.1,
                     duration: 0.7,
                     ease: [0.16, 1, 0.3, 1],
                   }}
                 >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-          </h1>
-
-          {/* Supporting Text */}
-          <motion.p
-            className="text-body-l text-mist max-w-[560px] mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Ocean Serenity is a maritime and industrial group operating four
-            specialist companies in marine agency, yachting, autonomous systems,
-            and industrial engineering.
-          </motion.p>
-
-          {/* Bottom Counters */}
-          <motion.div
-            className="flex items-start gap-12 md:gap-20"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {counters.map((c, i) => (
-              <div key={c.label} className="flex flex-col">
-                <AnimatedCounter target={c.value} suffix={c.suffix} />
-                <span className="font-mono text-eyebrow uppercase text-mist mt-2">
-                  {c.label}
-                </span>
-                {i < counters.length - 1 && <div className="hidden" />}
-              </div>
-            ))}
-
-            {/* Hairline separators rendered between counters */}
-          </motion.div>
+                  {c.label === 'Vessels Attended' && (
+                    <span className="font-mono text-eyebrow uppercase text-mist/70 italic mb-1">
+                      This Year
+                    </span>
+                  )}
+                  <AnimatedCounter target={c.value} suffix={c.suffix} />
+                  <span className="font-mono text-eyebrow uppercase text-mist mt-2">
+                    {c.label}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </motion.div>
-
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 right-6 md:right-12 lg:right-gutter z-10"

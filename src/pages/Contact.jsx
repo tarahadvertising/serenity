@@ -17,8 +17,8 @@ const contactDetails = [
   {
     icon: Mail,
     label: 'Email',
-    lines: ['info@oceanserenity.ae'],
-    href: 'mailto:info@oceanserenity.ae',
+    lines: ['info@oceanserenity.com'],
+    href: 'mailto:info@oceanserenity.com',
   },
 ];
 

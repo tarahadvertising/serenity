@@ -90,6 +90,7 @@
   .word-mask {
     clip-path: inset(0 0 0 0);
     overflow: hidden;
+    padding-bottom: 0.15em;
   }
 
   .tabular-nums {

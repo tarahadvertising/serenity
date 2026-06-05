@@ -2,9 +2,19 @@ import { useRef, useEffect, useState } from 'react';
 import RevealOnScroll from '../components/RevealOnScroll';
 
 const metrics = [
-  { value: 847000, suffix: '', label: 'Tonnage Handled YTD', format: true },
-  { value: 312, suffix: '', label: 'Port Calls This Quarter', format: false },
-  { value: 23, suffix: '', label: 'Vessels at Sea', format: false },
+  {
+    value: 1200,
+    suffix: '',
+    label: 'Vessels Attended for Services',
+    format: true,
+  },
+  { value: 35, suffix: '', label: 'Industrial Clients Served', format: false },
+  {
+    value: 15,
+    suffix: '',
+    label: 'International Vessels Attendants',
+    format: false,
+  },
   { value: 9, suffix: '', label: 'Active Projects', format: false },
 ];
 

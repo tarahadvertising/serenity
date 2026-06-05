@@ -10,13 +10,13 @@ const companies = [
     eyebrow: '01 / 04 — Port Agency',
     name: 'ASP Global Marine',
     description:
-      "We move ships, and the people who run them, through the world's busiest ports. Full-service port agency, crew management, ship chandling, and maritime consultancy across the Arabian Gulf and beyond.",
+      'ASP Global Marine is a specialized marine and offshore product solution provider delivering high-quality equipment, spare parts, and consumables to vessels and offshore installations worldwide. With a strong focus on operational reliability and compliance requirements of the maritime industry, ASP Global offers product solutions for equipment/mechanical systems, safety items, deck/engine stores and engine spares.This is backed by extensive sourcing capabilities and technical product knowledge, which enables ASP Global marine to serve shipowners, ship managers, operators, and marine service companies throughout the maritime sector.',
     capabilities: [
       'Port Agency & Husbandry',
       'Crew Management',
       'Ship Chandling & Provisions',
     ],
-    logo: '/asp.svg',
+    logo: '/asp.webp',
     bg: 'bg-ink',
   },
   {
@@ -25,7 +25,7 @@ const companies = [
     eyebrow: '02 / 04 — Yacht Management',
     name: 'Knot & Sail',
     description:
-      'From superyacht charters to commercial sailing operations — bespoke maritime experiences built around the craft of seamanship and the pursuit of the exceptional.',
+      'Knot & Sail is a premier service provider in the UAE marine market, offering a complete range of reliable and high-quality solutions for ship owners and ship management companies. With a strong presence across all UAE ports, we are committed to delivering excellence in maritime services, ensuring vessels operate smoothly, efficiently, and in compliance with international standards. Our expertise spans across various aspects of ship support, from maintenance and repairs to logistics and technical assistance, making us a trusted partner in the industry.',
     capabilities: [
       'Luxury Charter Operations',
       'Yacht Management',
@@ -40,7 +40,7 @@ const companies = [
     eyebrow: '03 / 04 — Autonomous Systems',
     name: 'Ocean Infinity',
     description:
-      "Robots, on and under the water, doing what humans shouldn't have to. AUVs and remotely operated vessels for survey, inspection, and subsea operations at industrial scale.",
+      'Ocean Infinity delivers advanced ship repair, maintenance, and marine safety solutions to support the performance and longevity of vessels operating in demanding environments.Built on strong technical expertise and hands-on industry experience, we provide end-to-end services from repair and conversion to safety compliance and onboard system support. Every project is executed with precision, minimizing downtime while maximizing operational efficiency.Our commitment goes beyond repair. We ensure that every vessel meets the highest standards of safety, reliability, and regulatory compliance, safeguarding both crew and assets.',
     capabilities: [
       'Autonomous Underwater Vehicles',
       'Remote Survey & Inspection',
@@ -61,7 +61,7 @@ const companies = [
       'Heat Tracing Engineering',
       'Turnkey Industrial Solutions',
     ],
-    logo: '/warmsol.svg',
+    logo: '/warmsol.webp',
     bg: 'bg-ink',
   },
 ];
@@ -88,11 +88,11 @@ function CompanyPanel({ company, index }) {
             className={`lg:col-span-6 ${index % 2 === 1 ? 'lg:order-2' : ''}`}
           >
             <RevealOnScroll>
-              <div className="relative aspect-[4/3] bg-midnight/50 rounded-sm overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-[4/3] flex items-center justify-center">
                 <img
                   src={company.logo}
                   alt={company.name}
-                  className="w-32 h-32 lg:w-48 lg:h-48 object-contain opacity-80"
+                  className="max-w-full max-h-full object-contain opacity-80"
                 />
               </div>
             </RevealOnScroll>

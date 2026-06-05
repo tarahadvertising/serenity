@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Companies', to: '/companies', hasMega: true },
   { label: 'Operations', to: '/operations' },
   { label: 'Insights', to: '/insights' },
+  { label: 'Blogs', to: '/blogs' },
   { label: 'Contact', to: '/contact' },
 ];
 
@@ -63,15 +64,17 @@ function Navbar() {
       {scrolled && (
         <div className="absolute bottom-0 left-0 right-0 h-px bg-pearl/[0.08]" />
       )}
-
       <nav className="max-w-site mx-auto section-padding flex items-center justify-between h-20">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center gap-3">
           <img
             src="/SerenityLogo.svg"
             alt="Ocean Serenity"
             className="h-14 w-auto"
           />
+          <span className="font-display text-h6 text-pearl tracking-wide">
+            OCEAN SERENITY
+          </span>
         </Link>
         {/* Desktop Nav */}
         <ul className="hidden lg:flex items-center gap-10">

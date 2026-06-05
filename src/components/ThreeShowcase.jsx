@@ -44,7 +44,8 @@ function ThreeShowcase() {
             castShadow
             shadow-mapSize={[2048, 2048]}
           />
-          <pointLight position={[0, 5, 0]} intensity={0.5} color="#0ea5e9" />
+          <pointLight position={[0, 5, 0]} 
+          intensity={0.5} color="#0ea5e9" />
           
           {/* Environment for reflections */}
           <Environment preset="sunset" />
@@ -73,6 +74,7 @@ function ThreeShowcase() {
             far={10}
           />
         </Canvas>
+
       </Suspense>
 
       {/* Performance stats (optional) */}

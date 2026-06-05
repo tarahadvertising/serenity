@@ -3,15 +3,9 @@ import RevealOnScroll from '../components/RevealOnScroll';
 const leaders = [
   {
     name: 'Arun .V.V',
-    role: 'Chief Executive Officer',
+    role: 'Advicer Technical Commercial',
     bio: "Strategic leader with extensive experience in maritime operations and business development. Drives the group's vision and growth across all portfolio companies.",
-    photo: '/arun.jpeg',
-  },
-  {
-    name: 'Yoosaf Noohukannu',
-    role: 'Chief Operating Officer',
-    bio: 'Operations expert with deep industry knowledge. Oversees operational excellence and integration across the four portfolio companies.',
-    photo: '/yoosaf.png',
+    photo: '/arun.webp',
   },
 ];
 const commitments = [
@@ -43,7 +37,7 @@ function MissionVision() {
 
           <RevealOnScroll delay={0.1}>
             <h2 className="font-display text-h1 text-pearl max-w-[500px] mb-24">
-              The people behind the portfolio.
+              The person behind the portfolio.
             </h2>
           </RevealOnScroll>
 
@@ -86,7 +80,6 @@ function MissionVision() {
           </div>
         </div>
       </section>
-
       {/* Section 08 — Sustainability */}
       <section className="relative bg-ink overflow-hidden">
         {/* Full-bleed image */}
@@ -95,8 +88,7 @@ function MissionVision() {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: "url('/about.webp')" }}
           />
-          <div className="absolute inset-0 bg-ink/60" />
-
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/80 to-ink/40 shadow-2xl" />
           <div className="relative h-full flex items-end">
             <div className="max-w-site mx-auto section-padding pb-16 w-full">
               <RevealOnScroll>
