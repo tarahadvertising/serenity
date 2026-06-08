@@ -7,7 +7,6 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Blogs from './pages/Blogs';
-
 function App() {
   return (
     <SmoothScroll>
@@ -32,5 +31,4 @@ function App() {
     </SmoothScroll>
   );
 }
-
 export default App;

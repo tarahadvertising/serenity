@@ -81,7 +81,6 @@ const categories = [
   'Engineering',
   'Sustainability',
 ];
-
 function Blogs() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [filteredPosts, setFilteredPosts] = useState(blogPosts);
