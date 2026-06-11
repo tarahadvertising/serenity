@@ -2,19 +2,76 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/SerenityLogo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Ocean Serenity FZ-LLC – Leading Marine & Industrial Solutions"
     />
-    <title>Ocean Serenity FZ-LLC</title>
+    <meta name="theme-color" content="#05080D" />
+    <meta name="msapplication-TileColor" content="#05080D" />
+
+    <!-- Performance and SEO -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Font preloading with display=swap -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;400;500;600;700&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;400;500;600;700&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Critical resources -->
+    <link rel="icon" type="image/svg+xml" href="/SerenityLogo.svg" />
+    <link rel="apple-touch-icon" href="/SerenityLogo.svg" />
+
+    <title>Ocean Serenity FZ-LLC</title>
+
+    <!-- Early loading hints -->
+    <link rel="modulepreload" href="/src/main.jsx" />
+
+    <!-- Inline critical CSS for faster rendering -->
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Inter Tight', system-ui, sans-serif;
+        background: #05080d;
+        color: #f5f1ea;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root {
+        min-height: 100vh;
+      }
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(184, 148, 90, 0.2);
+        border-top: 2px solid #b8945a;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

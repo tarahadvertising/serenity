@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 const counters = [
@@ -11,11 +11,13 @@ const headlineWords = ['Fathoming', 'oceans', 'beyond', 'technology'];
 function AnimatedCounter({ target, suffix }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
+  const animationRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !animationRef.current) {
+          animationRef.current = true;
           let start = 0;
           const duration = 2000;
           const startTime = performance.now();
@@ -24,16 +26,25 @@ function AnimatedCounter({ target, suffix }) {
             const progress = Math.min(elapsed / duration, 1);
             const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.floor(eased * target));
-            if (progress < 1) requestAnimationFrame(step);
+            if (progress < 1) {
+              animationRef.current = requestAnimationFrame(step);
+            }
           };
-          requestAnimationFrame(step);
+          animationRef.current = requestAnimationFrame(step);
           observer.disconnect();
         }
       },
       { threshold: 0.5 }
     );
+
     if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+
+    return () => {
+      observer.disconnect();
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
   }, [target]);
 
   return (
@@ -67,7 +78,10 @@ function Hero() {
           playsInline
           className="w-full h-full object-cover"
           poster="/about.webp"
+          preload="metadata"
+          loading="lazy"
         >
+          <source src="/homebanner.webm" type="video/webm" />
           <source src="/homebanner.mp4" type="video/mp4" />
         </video>
       </motion.div>
