@@ -8,11 +8,9 @@ function SectionHeader({ eyebrow, title, subtitle, centered = true }) {
           {eyebrow}
         </span>
       )}
-
       <h2 className="text-3xl sm:text-4xl font-bold text-navy-800 leading-tight mb-4">
         {title}
       </h2>
-      
       {subtitle && (
         <p
           className={`text-gray-500 text-base leading-relaxed max-w-2xl ${
