@@ -5,7 +5,6 @@ import Services from '../sections/Services';
 import WhyChooseUs from '../sections/WhyChooseUs';
 import MissionVision from '../sections/MissionVision';
 import CallToAction from '../sections/CallToAction';
-
 function Home() {
   return (
     <>
